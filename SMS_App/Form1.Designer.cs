@@ -39,13 +39,13 @@ namespace SMS_App
             this.panel_Back = new System.Windows.Forms.Panel();
             this.panel_body = new System.Windows.Forms.Panel();
             this.panel_nav = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_Phonebook = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label_trash = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label_sentItems = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel_OutboxNotification = new System.Windows.Forms.Panel();
-            this.lbl_outboxNotificationCount = new System.Windows.Forms.Label();
             this.label_Outbox = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label_newMessage = new System.Windows.Forms.Label();
@@ -57,10 +57,10 @@ namespace SMS_App
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel_Back.SuspendLayout();
             this.panel_nav.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel_OutboxNotification.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel_head.SuspendLayout();
@@ -69,7 +69,7 @@ namespace SMS_App
             // timer_outbooknotification
             // 
             this.timer_outbooknotification.Enabled = true;
-            this.timer_outbooknotification.Interval = 500;
+            this.timer_outbooknotification.Interval = 1000;
             this.timer_outbooknotification.Tick += new System.EventHandler(this.timer_outbooknotification_Tick);
             // 
             // backgroundWorker1
@@ -84,7 +84,7 @@ namespace SMS_App
             // timer_SendSMS
             // 
             this.timer_SendSMS.Enabled = true;
-            this.timer_SendSMS.Interval = 1000;
+            this.timer_SendSMS.Interval = 1200;
             this.timer_SendSMS.Tick += new System.EventHandler(this.timer_SendSMS_Tick);
             // 
             // panel_Back
@@ -113,6 +113,7 @@ namespace SMS_App
             // panel_nav
             // 
             this.panel_nav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel_nav.Controls.Add(this.panel1);
             this.panel_nav.Controls.Add(this.panel8);
             this.panel_nav.Controls.Add(this.panel9);
             this.panel_nav.Controls.Add(this.panel10);
@@ -124,6 +125,30 @@ namespace SMS_App
             this.panel_nav.Size = new System.Drawing.Size(785, 35);
             this.panel_nav.TabIndex = 1;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.lbl_Phonebook);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel1.Location = new System.Drawing.Point(279, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(95, 28);
+            this.panel1.TabIndex = 2;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
+            // 
+            // lbl_Phonebook
+            // 
+            this.lbl_Phonebook.AutoSize = true;
+            this.lbl_Phonebook.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_Phonebook.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Phonebook.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_Phonebook.Location = new System.Drawing.Point(9, 6);
+            this.lbl_Phonebook.Name = "lbl_Phonebook";
+            this.lbl_Phonebook.Size = new System.Drawing.Size(78, 16);
+            this.lbl_Phonebook.TabIndex = 0;
+            this.lbl_Phonebook.Text = "Phonebook";
+            this.lbl_Phonebook.Click += new System.EventHandler(this.Lbl_Phonebook_Click);
+            // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.Transparent;
@@ -131,7 +156,7 @@ namespace SMS_App
             this.panel8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel8.Location = new System.Drawing.Point(680, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(79, 28);
+            this.panel8.Size = new System.Drawing.Size(92, 28);
             this.panel8.TabIndex = 6;
             this.panel8.Click += new System.EventHandler(this.panel8_Click);
             // 
@@ -165,7 +190,7 @@ namespace SMS_App
             this.label_sentItems.BackColor = System.Drawing.Color.Transparent;
             this.label_sentItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_sentItems.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label_sentItems.Location = new System.Drawing.Point(4, 7);
+            this.label_sentItems.Location = new System.Drawing.Point(0, 7);
             this.label_sentItems.Name = "label_sentItems";
             this.label_sentItems.Size = new System.Drawing.Size(70, 16);
             this.label_sentItems.TabIndex = 0;
@@ -175,39 +200,13 @@ namespace SMS_App
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.Transparent;
-            this.panel10.Controls.Add(this.panel_OutboxNotification);
             this.panel10.Controls.Add(this.label_Outbox);
             this.panel10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel10.Location = new System.Drawing.Point(491, 3);
+            this.panel10.Location = new System.Drawing.Point(488, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(97, 28);
+            this.panel10.Size = new System.Drawing.Size(100, 28);
             this.panel10.TabIndex = 4;
             this.panel10.Click += new System.EventHandler(this.panel10_Click);
-            // 
-            // panel_OutboxNotification
-            // 
-            this.panel_OutboxNotification.BackColor = System.Drawing.Color.Transparent;
-            this.panel_OutboxNotification.BackgroundImage = global::SMS_App.Properties.Resources.notification;
-            this.panel_OutboxNotification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel_OutboxNotification.Controls.Add(this.lbl_outboxNotificationCount);
-            this.panel_OutboxNotification.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel_OutboxNotification.Location = new System.Drawing.Point(69, 5);
-            this.panel_OutboxNotification.Name = "panel_OutboxNotification";
-            this.panel_OutboxNotification.Size = new System.Drawing.Size(20, 20);
-            this.panel_OutboxNotification.TabIndex = 7;
-            this.panel_OutboxNotification.Visible = false;
-            // 
-            // lbl_outboxNotificationCount
-            // 
-            this.lbl_outboxNotificationCount.AutoSize = true;
-            this.lbl_outboxNotificationCount.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_outboxNotificationCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_outboxNotificationCount.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl_outboxNotificationCount.Location = new System.Drawing.Point(3, 4);
-            this.lbl_outboxNotificationCount.Name = "lbl_outboxNotificationCount";
-            this.lbl_outboxNotificationCount.Size = new System.Drawing.Size(13, 13);
-            this.lbl_outboxNotificationCount.TabIndex = 1;
-            this.lbl_outboxNotificationCount.Text = "1";
             // 
             // label_Outbox
             // 
@@ -227,9 +226,9 @@ namespace SMS_App
             this.panel11.BackColor = System.Drawing.Color.Transparent;
             this.panel11.Controls.Add(this.label_newMessage);
             this.panel11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel11.Location = new System.Drawing.Point(373, 3);
+            this.panel11.Location = new System.Drawing.Point(378, 4);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(120, 28);
+            this.panel11.Size = new System.Drawing.Size(107, 28);
             this.panel11.TabIndex = 3;
             this.panel11.Click += new System.EventHandler(this.panel11_Click);
             // 
@@ -239,7 +238,7 @@ namespace SMS_App
             this.label_newMessage.BackColor = System.Drawing.Color.Transparent;
             this.label_newMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_newMessage.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label_newMessage.Location = new System.Drawing.Point(14, 7);
+            this.label_newMessage.Location = new System.Drawing.Point(7, 6);
             this.label_newMessage.Name = "label_newMessage";
             this.label_newMessage.Size = new System.Drawing.Size(95, 16);
             this.label_newMessage.TabIndex = 0;
@@ -251,7 +250,7 @@ namespace SMS_App
             this.panel13.BackColor = System.Drawing.Color.Transparent;
             this.panel13.Controls.Add(this.label_home);
             this.panel13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel13.Location = new System.Drawing.Point(299, 3);
+            this.panel13.Location = new System.Drawing.Point(202, 3);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(75, 28);
             this.panel13.TabIndex = 1;
@@ -263,7 +262,7 @@ namespace SMS_App
             this.label_home.BackColor = System.Drawing.Color.Transparent;
             this.label_home.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_home.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label_home.Location = new System.Drawing.Point(13, 7);
+            this.label_home.Location = new System.Drawing.Point(15, 7);
             this.label_home.Name = "label_home";
             this.label_home.Size = new System.Drawing.Size(45, 16);
             this.label_home.TabIndex = 0;
@@ -335,14 +334,14 @@ namespace SMS_App
             this.Text = "Form1";
             this.panel_Back.ResumeLayout(false);
             this.panel_nav.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            this.panel_OutboxNotification.ResumeLayout(false);
-            this.panel_OutboxNotification.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel13.ResumeLayout(false);
@@ -373,12 +372,12 @@ namespace SMS_App
         private System.Windows.Forms.Label label_home;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel_body;
-        private System.Windows.Forms.Panel panel_OutboxNotification;
-        private System.Windows.Forms.Label lbl_outboxNotificationCount;
         private System.Windows.Forms.Timer timer_outbooknotification;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Timer timer_SendSMS;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbl_Phonebook;
     }
 }
 

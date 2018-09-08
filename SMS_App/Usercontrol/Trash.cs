@@ -229,5 +229,15 @@ namespace SMS_App.Usercontrol
         {
             RestoreAllFromTrash();
         }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            RemoveAllfromTrash();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            RemoveAllfromTrash();
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace SMS_App
                         //Console.WriteLine("BhattiConsole: Modem Connected Successfully " + st);
                         ConnectedPorts.Add(st);
                         comm.Close();
+                        
                     }
                     else
                     {

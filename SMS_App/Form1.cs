@@ -29,7 +29,8 @@ namespace SMS_App
         public Form1()
         {
             InitializeComponent();
-           
+            ViewHome();
+
         }
         public void ChecknotificationOutbox()
         {
@@ -37,7 +38,7 @@ namespace SMS_App
             Outbox_notificationcount = 0;
             List<SMSBAL> smsList = sms_db.LoadAll();
             outboxcount = smsList.Where(m => !m.IsDelieverd&&m.status).Count();
-            sentItemscount= smsList.Where(m => m.IsDelieverd && m.status).Count();
+            sentItemscount = smsList.Where(m => m.IsDelieverd && m.status).Count();
             trashcount= smsList.Where(m => ! m.status).Count();
             foreach (var item in smsList)
             {
@@ -48,6 +49,7 @@ namespace SMS_App
             }
            
         }
+       
         public void InactiveAllnav()
         {
             label_home.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -55,6 +57,7 @@ namespace SMS_App
             label_Outbox.ForeColor = System.Drawing.Color.WhiteSmoke;
             label_sentItems.ForeColor = System.Drawing.Color.WhiteSmoke;
             label_trash.ForeColor = System.Drawing.Color.WhiteSmoke;
+            lbl_Phonebook.ForeColor = System.Drawing.Color.WhiteSmoke;
         }
         private void panel_header_MouseMove(object sender, MouseEventArgs e)
         {
@@ -122,7 +125,7 @@ namespace SMS_App
         public void ViewNewMessage()
         {
             panel_body.Controls.Clear();
-            NewMessages ucClass = new NewMessages();
+            NewMessages ucClass = new NewMessages(this);
             panel_body.Controls.Add(ucClass);
             InactiveAllnav();
             label_newMessage.ForeColor = System.Drawing.Color.DeepSkyBlue;
@@ -166,12 +169,15 @@ namespace SMS_App
             label_trash.Text = "Trash (" + trashcount + ")";
             if (Outbox_notificationcount > 0)
             {
-                panel_OutboxNotification.Show();
-                lbl_outboxNotificationCount.Text = Outbox_notificationcount.ToString();
+                //panel_OutboxLessThan10Notification.Show();
+                //lbl_outboxNotificationount.Show();
+               // lbl_outboxNotificationount.Text = Outbox_notificationcount.ToString()+ " unread";
             }
             else
             {
-                panel_OutboxNotification.Hide();
+
+               // lbl_outboxNotificationount.Hide();
+                //  panel_OutboxLessThan10Notification.Hide();
             }
         }
 
@@ -262,6 +268,24 @@ namespace SMS_App
             panel_body.Controls.Add(ucClass);
             InactiveAllnav();
             label_trash.ForeColor = System.Drawing.Color.DeepSkyBlue;
+        }
+        public void ViewPhoneBook()
+        {
+            panel_body.Controls.Clear();
+            PhoneBook ucClass = new PhoneBook();
+            panel_body.Controls.Add(ucClass);
+            InactiveAllnav();
+            lbl_Phonebook.ForeColor = System.Drawing.Color.DeepSkyBlue;
+        }
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            ViewPhoneBook();
+        }
+
+        private void Lbl_Phonebook_Click(object sender, EventArgs e)
+        {
+
+            ViewPhoneBook();
         }
     }
 }

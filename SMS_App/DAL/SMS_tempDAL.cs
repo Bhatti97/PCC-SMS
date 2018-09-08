@@ -113,10 +113,9 @@ listt.Add(obj1);
             try
             {
                 //Local
-
-          SqlDataReader dr;
-                 List<SMS_tempBAL> listt = new List<SMS_tempBAL>();
-          con.Open();
+                SqlDataReader dr;
+                List<SMS_tempBAL> listt = new List<SMS_tempBAL>();
+                con.Open();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "SMS_temp_LOADALL";
@@ -128,19 +127,19 @@ listt.Add(obj1);
                     while (dr.Read())
                     {
                         SMS_tempBAL obj1 = new SMS_tempBAL();
-                float x=0;                obj1.smstemp_id = Convert.ToInt32(dr["smstemp_id"].ToString());
-                obj1.phoneNo = dr["phoneNo"].ToString();
-                obj1.message = dr["message"].ToString();
-                obj1.TimeStamp =Convert.ToDateTime( dr["TimeStamp"].ToString());
-                obj1.status =(bool) dr["status"];
-                listt.Add(obj1);
-         }
-         }
-         dr.Close();
-           con.Close();
-                return listt; 
-}
-            catch (SqlException e)
+                        float x = 0; obj1.smstemp_id = Convert.ToInt32(dr["smstemp_id"].ToString());
+                        obj1.phoneNo = dr["phoneNo"].ToString();
+                        obj1.message = dr["message"].ToString();
+                        obj1.TimeStamp = Convert.ToDateTime(dr["TimeStamp"].ToString());
+                        obj1.status = (bool)dr["status"];
+                        listt.Add(obj1);
+                    }
+                }
+                dr.Close();
+                con.Close();
+                return listt;
+            }
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
